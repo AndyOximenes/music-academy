@@ -17,7 +17,7 @@ body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.774);
+    background-color: rgba(0, 0, 0, 0.904);
     width: 100%;
     padding: 2rem;
     text-align: center;
@@ -60,4 +60,92 @@ header {
 .links a:hover::after {
     width: 100%;
     transition: width 200ms ease-in-out;
+}
+
+/* === CARD === */
+
+.card {
+    background-color: rgb(240, 240, 240);
+    width: 50rem;
+    min-height: 25rem;
+
+    /* espaçamento ao centro */
+    margin: 2.8125rem auto;
+
+    /* grid split */
+    display: grid;
+    grid-template-columns: 40% 60%;
+
+    /* sombra */
+    box-shadow: 0 0.125rem 0.375rem -0.125rem rgba(0, 0, 0, 0.5);
+
+    /* animation */
+
+    animation-name: card 200ms ease-in-out;
+}
+
+@keyframes card {
+    from {
+        opacity: 0;
+        transform: translate(0.9375rem);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* === DETAILS === */
+
+.details {
+    padding: 2rem;
+}
+
+.details .item {
+    border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+/* estilizando os elementos atraves de cada div */
+
+.details .item:last-child {
+    border: none;
+}
+
+.details h3,
+.details .item div:nth-child(1) {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: #777;
+    letter-spacing: 0.04375rem;
+    font-weight: normal;
+}
+
+.details .item div:nth-child(2) {
+    color: #555;
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.details h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--menu-golden);
+}
+
+.details .item span {
+    padding: 0.5rem 1rem;
+    background-color: var(--menu-golden);
+    border-radius: 1rem;
+    color: rgb(43, 43, 43);
+    margin-right: 0.25rem;
+    margin-top: 0.5rem;
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+.details .item span:hover {
+    background-color: var(--menu-golden-hover);
+    transition: 200ms;
 }
