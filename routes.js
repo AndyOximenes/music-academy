@@ -9,6 +9,10 @@ routes.get("/teachers", (request, response) => {
     return response.render("teachers/index");
 });
 
+routes.get("/teachers/create", (request, response) => {
+    return response.render("teachers/create");
+});
+
 routes.get("/students", (request, response) => {
     return response.render("students");
 });
