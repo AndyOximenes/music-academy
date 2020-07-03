@@ -1,5 +1,6 @@
 const fs = require("fs");
 const data = require("./data.json");
+const { age, date } = require("./utils");
 
 // === POST ===
 
@@ -40,4 +41,46 @@ exports.post = (request, response) => {
 
         return response.redirect("/teachers");
     });
+};
+
+// === SHOW ===
+
+exports.show = (request, response) => {
+    const { id } = request.params;
+
+    const foundTeacher = data.teachers.find((teacher) => {
+        return teacher.id == id;
+    });
+
+    if (!foundTeacher) return response.send("Teacher not found");
+
+    const teacher = {
+        ...foundTeacher,
+        age: age(foundTeacher.birth),
+        services: foundTeacher.services.split(","),
+        created_at: new Intl.DateTimeFormat("pt-BR").format(
+            foundTeacher.created_at
+        ),
+    };
+
+    return response.render("teachers/show", { teacher });
+};
+
+// === EDIT ===
+
+exports.edit = (request, response) => {
+    const { id } = request.params;
+
+    const foundTeacher = data.teachers.find((teacher) => {
+        return teacher.id == id;
+    });
+
+    if (!foundTeacher) return response.send("Teacher not found");
+
+    const teacher = {
+        ...foundTeacher,
+        birth: date(foundTeacher.birth),
+    };
+
+    return response.render("teachers/edit", { teacher });
 };
