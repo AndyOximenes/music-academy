@@ -22,6 +22,8 @@ routes.post("/teachers", teachers.post);
 
 routes.put("/teachers", teachers.put);
 
+routes.delete("/teachers", teachers.delete);
+
 routes.get("/students", (request, response) => {
     return response.render("students");
 });

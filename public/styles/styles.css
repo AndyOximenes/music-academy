@@ -199,3 +199,13 @@ button:hover {
     background-color: var(--menu-golden-hover);
     transition: 200ms;
 }
+
+#form-delete button[type="submit"] {
+    margin-top: 0.5rem;
+    background-color: red;
+}
+
+#form-delete button[type="submit"]:hover {
+    background-color: rgb(141, 2, 2);
+    transition: 200ms;
+}

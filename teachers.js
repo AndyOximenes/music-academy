@@ -117,3 +117,21 @@ exports.put = (request, response) => {
         return response.redirect(`/teachers/${id}`);
     });
 };
+
+// === DELTE ===
+
+exports.delete = (request, response) => {
+    const { id } = request.body;
+
+    const filteredTeacher = data.teachers.filter((teacher) => {
+        return teacher.id != id;
+    });
+
+    data.teachers = filteredTeacher;
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+        if (err) return response.send("Write file error!");
+
+        return response.redirect("/teachers");
+    });
+};

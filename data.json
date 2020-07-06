@@ -1,24 +1,3 @@
 {
-  "teachers": [
-    {
-      "id": "1",
-      "avatar_url": "http://google.com",
-      "name": "Andy Oximenes da Silva",
-      "birth": 802656000000,
-      "educational_level": "Técnico",
-      "lesson": "distance",
-      "services": "Violão, Harmonia",
-      "created_at": 1593811987599
-    },
-    {
-      "id": "2",
-      "avatar_url": "http://google.com",
-      "name": "Ana Carolina",
-      "birth": 818985600000,
-      "educational_level": "Bacharel",
-      "lesson": "local",
-      "services": "Violão, Harmonia, Guitarra ",
-      "created_at": 1593812022438
-    }
-  ]
+  "teachers": []
 }
