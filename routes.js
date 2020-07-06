@@ -20,6 +20,8 @@ routes.get("/teachers/:id/edit", teachers.edit);
 
 routes.post("/teachers", teachers.post);
 
+routes.put("/teachers", teachers.put);
+
 routes.get("/students", (request, response) => {
     return response.render("students");
 });

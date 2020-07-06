@@ -84,3 +84,36 @@ exports.edit = (request, response) => {
 
     return response.render("teachers/edit", { teacher });
 };
+
+// === PUT ===
+
+exports.put = (request, response) => {
+    const { id } = request.body;
+
+    let index = 0;
+
+    const foundTeacher = data.teachers.find((teacher, foundIndex) => {
+        if (teacher.id == id) {
+            index = foundIndex;
+            return true;
+        }
+    });
+
+    if (!foundTeacher) {
+        return response.send("Teacher not found!");
+    }
+
+    const teacher = {
+        ...foundTeacher,
+        ...request.body,
+        birth: Date.parse(request.body.birth),
+    };
+
+    data.teachers[index] = teacher;
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+        if (err) return response.send("Write file error!");
+
+        return response.redirect(`/teachers/${id}`);
+    });
+};
