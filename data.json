@@ -1,3 +1,14 @@
 {
-  "teachers": []
+  "teachers": [
+    {
+      "id": "1",
+      "avatar_url": "http://google.com",
+      "name": "Andy Oximenes da Silva",
+      "birth": 802656000000,
+      "educational_level": "Técnico",
+      "lesson": "distance",
+      "services": "Violão, Harmonia",
+      "created_at": 1594090708996
+    }
+  ]
 }

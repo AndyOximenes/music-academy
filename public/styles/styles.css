@@ -178,7 +178,7 @@ a.button {
     color: white;
     border-radius: 0.25rem;
     margin-top: 2rem;
-    width: 100%;
+    width: auto;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -200,9 +200,18 @@ button:hover {
     transition: 200ms;
 }
 
-#form-delete button[type="submit"] {
+#form-post button[id="btn-save"] {
+    float: left;
+    margin: 1rem auto 0 0;
+    width: 45%;
+}
+
+#form-delete button[id="btn-delete"] {
     margin-top: 0.5rem;
     background-color: red;
+    float: left;
+    margin: 1rem auto 0 1rem;
+    width: 45%;
 }
 
 #form-delete button[type="submit"]:hover {
