@@ -2,44 +2,29 @@
 
 {% block content %}
 
-    <div class="card">
+    <div class="card table-container">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Professor</th>
+                    <th>Acompanhamento</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
 
-        <section class="avatar" style="background: url(https://source.unsplash.com/collection/946111/500x500) no-repeat center center / cover"></section>
-
-        <section class="details">
-
-            <h3>Detalhes</h3>
-
-            <div class="item">
-                <div>Instrutor</div>
-                <div>Andy Oximenes da Silva</div>
-            </div>
-
-            <div class="item">
-                <div>Idade</div>
-                <div>25</div>
-            </div>
-
-            <div class="item">
-                <div>Escolaridade</div>
-                <div>Técnico</div>
-            </div>
-
-            <div class="item">
-                <div>Acompanhamento</div>
-                <div>
-                    <span>Harmonia</span>
-                    <span>Improvisação</span>
-                    <span>Violão</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div>Desde</div>
-                <div>09/06/2019</div>
-            </div>
-
-        </section>
+            <tbody>
+                {% for teacher in teachers %}
+                    <tr>
+                        <td>
+                            <span style="background-image:url({{ teacher.avatar_url }})"></span>{{ teacher.name }}</td>
+                        <td>{{ teacher.services }}</td>
+                        <td>
+                            <a href="/teachers/{{ teacher.id }}">Visualizar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
     </div>
 

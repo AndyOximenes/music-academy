@@ -2,6 +2,10 @@ const fs = require("fs");
 const data = require("./data.json");
 const { age, date } = require("./utils");
 
+exports.index = (request, response) => {
+    return response.render("teachers/index", { teachers: data.teachers });
+};
+
 // === POST ===
 
 exports.post = (request, response) => {
@@ -107,6 +111,7 @@ exports.put = (request, response) => {
         ...foundTeacher,
         ...request.body,
         birth: Date.parse(request.body.birth),
+        id: Number(request.body.id),
     };
 
     data.teachers[index] = teacher;
