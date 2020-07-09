@@ -1,9 +1,20 @@
-const modalOverlay = document.querySelector(".modal-overlay");
-const cards = document.querySelectorAll(".card");
+// === ACTIVE MENU ===
 
-for (let card of cards) {
-    card.addEventListener("click", () => {
-        const siteId = card.getAttribute("id");
-        window.location.href = `/courses/${siteId}`;
-    });
+const currentPage = location.pathname;
+const menuItems = document.querySelectorAll("header .links a");
+
+for (item of menuItems) {
+    if (currentPage.includes(item.getAttribute("href"))) {
+        item.classList.add("active");
+    }
 }
+
+// MEMBER | INSTRUCTOR DELETE
+
+const formDelete = document.querySelector("#form-delete");
+formDelete.addEventListener("submit", (e) => {
+    const confirmation = confirm("Deseja realmente deletar?");
+    if (!confirmation) {
+        e.preventDefault();
+    }
+});

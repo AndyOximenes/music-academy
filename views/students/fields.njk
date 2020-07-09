@@ -1,0 +1,48 @@
+<div class="item">
+    <div>Avatar URL</div>
+    <div>
+        <input type="url" name="avatar_url" placeholder="http://" value="{{ student.avatar_url }}">
+    </div>
+</div>
+
+<div class="item">
+    <div>Nome completo</div>
+    <div>
+        <input type="text" name="name" placeholder="Nome do aluno" value="{{ student.name }}">
+    </div>
+</div>
+
+<div class="item">
+    <div>Email</div>
+    <div>
+        <input type="email" name="email" value="{{ student.email }}">
+    </div>
+</div>
+
+<div class="item">
+    <div>Data de nascimento</div>
+    <div>
+        <input type="date" name="birth" value="{{ student.birth }}">
+    </div>
+</div>
+
+<div class="item">
+    <div>Instrumento</div>
+    <div>
+        <select name="instrument">
+            <option value="select" {% if student.instrument == "select" %} selected="selected" {% endif %}>Selecione</option>
+            <option value="Violão" {% if student.instrument == "Violão" %} selected="selected" {% endif %}>Violão</option>
+            <option value="Guitarra" {% if student.instrument == "Guitarra" %} selected="selected" {% endif %}>Guitarra</option>
+            <option value="Contra-baixo" {% if student.instrument == "Contra-baixo" %} selected="selected" {% endif %}>Contra-baixo</option>
+            <option value="Teclado" {% if student.instrument == "Teclado" %} selected="selected" {% endif %}>Teclado</option>
+            <option value="Bateria" {% if student.instrument == "Bateria" %} selected="selected" {% endif %}>Bateria</option>
+        </select>
+    </div>
+</div>
+
+<div class="item">
+    <div>Carga horária (semanal)</div>
+    <div>
+        <input type="number" name="hours" value="{{ student.hours }}">
+    </div>
+</div>
