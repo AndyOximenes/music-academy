@@ -6,23 +6,24 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "npm-run-all -p nodemon browsersync",
-        "nodemon": "nodemon server.js",
-        "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public,views'"
+        "nodemon": "nodemon src/server.js",
+        "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public,src/app/views'"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AndyOximenes/rocketseat-website-launchbase.git"
+        "url": "git+https://github.com/AndyOximenes/music-academy.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/AndyOximenes/rocketseat-website-launchbase/issues"
+        "url": "https://github.com/AndyOximenes/music-academy/issues"
     },
-    "homepage": "https://github.com/AndyOximenes/rocketseat-website-launchbase#readme",
+    "homepage": "https://github.com/AndyOximenes/music-academy#readme",
     "dependencies": {
         "express": "^4.17.1",
         "method-override": "^3.0.0",
-        "nunjucks": "^3.2.1"
+        "nunjucks": "^3.2.1",
+        "pg": "^8.3.0"
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",
