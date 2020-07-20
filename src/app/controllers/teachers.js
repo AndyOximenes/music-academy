@@ -1,8 +1,11 @@
-const { date } = require("../../lib/utils");
+const { date, age } = require("../../lib/utils");
+const Teacher = require("../models/Teacher");
 
 module.exports = {
     index(request, response) {
-        return response.render("teachers/index");
+        Teacher.all((teachers) => {
+            return response.render("teachers/index", { teachers });
+        });
     },
 
     post(request, response) {
@@ -13,7 +16,10 @@ module.exports = {
                 return response.send("Please fill all the fields");
             }
         }
-        return;
+
+        Teacher.create(request.body, (teacher) => {
+            return response.redirect(`/teachers/${teacher.id}`);
+        });
     },
 
     create(request, response) {
@@ -21,11 +27,27 @@ module.exports = {
     },
 
     show(request, response) {
-        return;
+        Teacher.find(request.params.id, (teacher) => {
+            if (!teacher) throw "Teacher not found!";
+
+            teacher.age = age(teacher.birth);
+            teacher.services = teacher.services.split(",");
+            teacher.created_at = date(teacher.created_at).format;
+
+            return response.render("teachers/show", { teacher });
+        });
     },
 
     edit(request, response) {
-        return;
+        Teacher.find(request.params.id, (teacher) => {
+            if (!teacher) throw "Teacher not found!";
+
+            teacher.birth = date(teacher.birth).iso;
+            teacher.services = teacher.services.split(",");
+            teacher.created_at = date(teacher.created_at).format;
+
+            return response.render(`teachers/edit`, { teacher });
+        });
     },
 
     put(request, response) {
@@ -36,10 +58,15 @@ module.exports = {
                 return response.send("Please fill all the fields");
             }
         }
-        return;
+
+        Teacher.update(request.body, () => {
+            return response.redirect(`/teachers/${request.body.id}`);
+        });
     },
 
     delete(request, response) {
-        return;
+        Teacher.delete(request.body, () => {
+            return response.redirect(`/teachers`);
+        });
     },
 };
