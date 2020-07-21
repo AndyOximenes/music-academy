@@ -1,8 +1,11 @@
-const { date } = require("../../lib/utils");
+const { date, age } = require("../../lib/utils");
+const Student = require("../models/Student");
 
 module.exports = {
     index(request, response) {
-        return response.render("students/index");
+        Student.all((students) => {
+            return response.render("students/index", { students });
+        });
     },
 
     post(request, response) {
@@ -13,7 +16,10 @@ module.exports = {
                 return response.send("Please fill all the fields");
             }
         }
-        return;
+
+        Student.create(request.body, (student) => {
+            return response.redirect(`/students/${student.id}`);
+        });
     },
 
     create(request, response) {
@@ -21,11 +27,26 @@ module.exports = {
     },
 
     show(request, response) {
-        return;
+        Student.find(request.params.id, (student) => {
+            if (!student) throw "Student not found!";
+
+            student.birth = date(student.birth).birthDay;
+            student.created_at = date(student.created_at).format;
+
+            return response.render("students/show", { student });
+        });
     },
 
     edit(request, response) {
-        return;
+        Student.find(request.params.id, (student) => {
+            if (!student) throw "Student not found!";
+
+            student.birth = date(student.birth).iso;
+            student.services = student.services.split(",");
+            student.created_at = date(student.created_at).format;
+
+            return response.render(`students/edit`, { student });
+        });
     },
 
     put(request, response) {
@@ -36,10 +57,15 @@ module.exports = {
                 return response.send("Please fill all the fields");
             }
         }
-        return;
+
+        Student.update(request.body, () => {
+            return response.redirect(`/students/${request.body.id}`);
+        });
     },
 
     delete(request, response) {
-        return;
+        Student.delete(request.body, () => {
+            return response.redirect(`/students`);
+        });
     },
 };
