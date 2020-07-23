@@ -3,9 +3,17 @@ const Student = require("../models/Student");
 
 module.exports = {
     index(request, response) {
-        Student.all((students) => {
-            return response.render("students/index", { students });
-        });
+        const { filter } = request.query;
+
+        if (filter) {
+            Student.findBy(filter, (students) => {
+                return response.render("students/index", { students, filter });
+            });
+        } else {
+            Student.all((students) => {
+                return response.render("students/index", { students });
+            });
+        }
     },
 
     post(request, response) {
@@ -70,7 +78,7 @@ module.exports = {
     },
 
     delete(request, response) {
-        Student.delete(request.body, () => {
+        Student.delete(request.body.id, () => {
             return response.redirect(`/students`);
         });
     },

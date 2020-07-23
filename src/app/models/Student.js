@@ -63,6 +63,22 @@ module.exports = {
         );
     },
 
+    findBy(filter, callback) {
+        db.query(
+            `
+            SELECT students.*
+            FROM students
+            WHERE students.name ILIKE '%${filter}%'
+            OR students.instrument ILIKE '%${filter}%'
+        `,
+            (err, results) => {
+                if (err) throw `Database error! ${err}`;
+
+                callback(results.rows);
+            }
+        );
+    },
+
     update(data, callback) {
         const query = `
             UPDATE students SET

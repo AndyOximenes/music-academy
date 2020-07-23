@@ -4,7 +4,14 @@
 
     <div class="card table-container">
 
-        <a href="/students/create">Cadastrar</a>
+        <div class="header">
+            <a class="button" href="/students/create">Cadastrar</a>
+            <form action="/students" method="get">
+                <input type="text" name="filter" placeholder="Nome ou Instrumento" value="{{ filter }}">
+                <button type="submit">Filtrar</button>
+            </form>
+
+        </div>
 
         <table width="100%">
             <thead>

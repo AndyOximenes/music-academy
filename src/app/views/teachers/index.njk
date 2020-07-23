@@ -4,13 +4,21 @@
 
     <div class="card table-container">
 
-        <a href="/teachers/create">Cadastrar</a>
+        <div class="header">
+            <a class="button" href="/teachers/create">Cadastrar</a>
+            <form action="/teachers" method="get">
+                <input type="text" name="filter" placeholder="Nome ou Acompanhamento" value="{{ filter }}">
+                <button type="submit">Filtrar</button>
+            </form>
+
+        </div>
 
         <table width="100%">
             <thead>
                 <tr>
                     <th>Professor</th>
                     <th>Acompanhamento</th>
+                    <th>Alunos</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -21,6 +29,7 @@
                         <td>
                             <span style="background-image:url({{ teacher.avatar_url }})"></span>{{ teacher.name }}</td>
                         <td>{{ teacher.services }}</td>
+                        <td>{{ teacher.total_students }}</td>
                         <td>
                             <a href="/teachers/{{ teacher.id }}">Visualizar</a>
                         </td>

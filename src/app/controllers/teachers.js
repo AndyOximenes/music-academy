@@ -3,9 +3,17 @@ const Teacher = require("../models/Teacher");
 
 module.exports = {
     index(request, response) {
-        Teacher.all((teachers) => {
-            return response.render("teachers/index", { teachers });
-        });
+        const { filter } = request.query;
+
+        if (filter) {
+            Teacher.findBy(filter, (teachers) => {
+                return response.render("teachers/index", { teachers, filter });
+            });
+        } else {
+            Teacher.all((teachers) => {
+                return response.render("teachers/index", { teachers });
+            });
+        }
     },
 
     post(request, response) {
@@ -65,7 +73,7 @@ module.exports = {
     },
 
     delete(request, response) {
-        Teacher.delete(request.body, () => {
+        Teacher.delete(request.body.id, () => {
             return response.redirect(`/teachers`);
         });
     },

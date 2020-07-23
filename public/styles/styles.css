@@ -187,7 +187,7 @@ a.button {
 
 a.button {
     display: block;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     text-align: center;
     text-decoration: none;
 }
@@ -309,4 +309,35 @@ tbody tr td:last-child a:hover {
 .table-container thead tr th:last-child,
 td:last-child {
     text-align: center;
+}
+
+/* FILTER  */
+
+.table-container .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.table-container .header a {
+    margin: 0;
+    width: 7.5rem;
+}
+
+.table-container .header form {
+    display: grid;
+    grid-template-columns: 1fr 7.5rem;
+    align-items: center;
+    grid-gap: 8px;
+}
+
+.table-container .header form input {
+    border: 1px solid rgb(224, 224, 224);
+    padding: 4px 8px;
+    box-sizing: border-box;
+}
+
+.table-container .header form button {
+    margin: 0;
 }
