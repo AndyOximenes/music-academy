@@ -23,7 +23,11 @@ module.exports = {
     },
 
     create(request, response) {
-        return response.render("students/create");
+        Student.teacherSelectOptions((options) => {
+            return response.render("students/create", {
+                TeacherOptions: options,
+            });
+        });
     },
 
     show(request, response) {
@@ -31,7 +35,6 @@ module.exports = {
             if (!student) throw "Student not found!";
 
             student.birth = date(student.birth).birthDay;
-            student.created_at = date(student.created_at).format;
 
             return response.render("students/show", { student });
         });
@@ -42,10 +45,13 @@ module.exports = {
             if (!student) throw "Student not found!";
 
             student.birth = date(student.birth).iso;
-            student.services = student.services.split(",");
-            student.created_at = date(student.created_at).format;
 
-            return response.render(`students/edit`, { student });
+            Student.teacherSelectOptions((options) => {
+                return response.render(`students/edit`, {
+                    student,
+                    TeacherOptions: options,
+                });
+            });
         });
     },
 
